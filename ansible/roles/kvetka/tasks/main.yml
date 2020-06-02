@@ -1,0 +1,30 @@
+---
+# tasks file for kvetka
+- name: install tree
+  yum:
+    name: tree
+    state: latest
+
+- name: install Apache
+  yum:
+    name: httpd
+    state: latest
+
+- name: copy files
+  copy:
+    src: "{{ item }}"
+    dest: /var/www/html/Home_files
+  with_fileglob:
+    - /home/ec2-user/ansible/roles/kvetka/files/*
+  notify: Restart Apache
+
+- name: generate teplate
+  template:
+    src: index.j2
+    dest: "{{ destin_root_dir }}/index.html"
+
+- name: start Apache
+  service:
+    name: httpd
+    state: started
+    enabled: yes
