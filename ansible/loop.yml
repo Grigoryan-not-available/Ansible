@@ -1,0 +1,31 @@
+---
+ - name: Loops
+   hosts: linux2
+   become: yes
+ 
+   tasks:
+   - name: Hello from grigoryan:3
+     debug:
+       msg: Hello "{{ item }}"
+     loop: 
+       - Masha:*
+       - Igor
+       - Rabit
+  
+   - name: Until loop
+     shell: " echo -n Z >> file1.txt && cat file1.txt"
+     register: output
+     delay: 1
+     until: output.stdout.find("ZZZZ") == false   
+
+   - name: Print output
+     debug: 
+       var: output.stdout
+
+   - name: Instal packages
+     yum:
+       name: "{{ item }}"
+       state: latest
+     loop: 
+       - python
+       - tree

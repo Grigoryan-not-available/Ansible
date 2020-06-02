@@ -1,0 +1,10 @@
+---
+ - name: Install Apache & add files to html
+   hosts: "{{ MyHosts }}"
+   become: yes
+
+   roles: 
+     - name: deploy_default_apache_web
+       when: ansible_system == 'Linux' 
+     - name: Delegate
+   

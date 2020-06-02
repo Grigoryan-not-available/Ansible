@@ -1,0 +1,29 @@
+---
+# tasks file for deploy_default_apache_web
+- name: Install Apache
+  yum:
+    name: httpd
+    state: latest
+
+- name: start Apache
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+
+- name: Add files to /var/www/html
+  copy:
+    src: "{{ item }}"
+    dest: "{{ destin_dir }}"
+  loop:
+    - "favicon.ico"
+    - "script.js"
+    - "style.css"
+  notify: Restart Apache
+
+- name: Generate template
+  template:
+    src: index.j2
+    dest: "{{ destin_dir }}/index.html"
+  notify: Restart Apache
+

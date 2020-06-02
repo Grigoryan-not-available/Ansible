@@ -1,0 +1,7 @@
+---
+ - name: Kvetka master
+   hosts: tag_Name_Linux_Ansible_Management
+   become: yes
+
+   roles:
+     - name: kvetka

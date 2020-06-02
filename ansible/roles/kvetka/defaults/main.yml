@@ -1,0 +1,4 @@
+---
+# defaults file for kvetka
+destin_root_dir: /var/www/html
+destin_dir: /var/www/html/Home_files/

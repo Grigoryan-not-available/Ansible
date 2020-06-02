@@ -1,0 +1,23 @@
+---
+- name: Lesson 19
+  hosts: all
+  any_errors_fatal: true
+  become: yes
+ 
+  tasks:
+  - name: number 1
+    yum:
+      name: tree
+      state: latest
+    ignore_errors: yes    
+
+  - name: number 2
+    shell: cat /home/file6.txt 
+    register: result_t2    
+
+  - name: number 3
+    shell: echo Hello W0rld@@!
+
+  - name: number 4
+    debug: 
+      var: result_t2

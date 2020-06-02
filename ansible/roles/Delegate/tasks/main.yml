@@ -1,0 +1,44 @@
+---
+# tasks file for Delegate
+- name: ping
+  ping: 
+
+- name: unregister lb
+  shell: "echo This server {{ inventory_hostname }} unregister, nodename={{ ansible_nodename }} >> /home/log.txt"
+  delegate_to: 127.0.0.1
+
+- name: Echo pass
+  debug:
+    var: pass
+
+- name: create file1
+  copy:
+    dest: /home/file5.txt
+    content: |
+      Test1
+      Testfile1
+      Var1 {{ txt }}
+  delegate_to: linux1
+
+- name: create file2
+  copy:
+    dest: /home/file6.txt
+    content: |
+      Test2
+      Testfile2
+      Var2 {{ txt }} 
+  delegate_to: linux2
+
+- name: Reboot my servers
+  shell: sleep 3 && reboot now
+  async: 1
+  poll: 0
+
+- name: Wait till my servers will online
+  wait_for:
+    host: "{{ inventory_hostname }}"
+    state: started
+    delay: 5 
+    timeout: 40
+  delegate_to: 127.0.0.1
+
