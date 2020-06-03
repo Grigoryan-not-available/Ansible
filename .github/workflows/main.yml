@@ -30,7 +30,7 @@ jobs:
         run: |
           echo "kek Hello msq1.1"
           echo "kek Hello msq1.2"
-          echo "Application name: ${{env.app_name}}"\
+          echo "Application name: ${{env.app_name}}"
       
       - name: list current folder
         run: ls -la
@@ -63,8 +63,8 @@ jobs:
           echo "kek Hello msq2.2"
           echo "Application name: ${{env.pkg_name}}"
       
-      - name: test some pkg
+      - name: test aws pkg 
         run: aws --version
        
-      - name: test some pkg
+      - name: test zip pkg
         run: zip --version
