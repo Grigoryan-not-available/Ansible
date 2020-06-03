@@ -14,9 +14,14 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+    
+  
   test1:
     runs-on: ubuntu-latest
     steps:
+      - name: git clone my repo
+        uses: actions/checkout@v1
+          
       - name: print Hello msq 
         run: echo "Hello world from test1"
         
@@ -43,3 +48,9 @@ jobs:
           echo "kek Hello msq2.1"
           echo "kek Hello msq2.2"
           echo "Application name: ${{env.pkg_name}}"
+      
+      - name: test some pkg
+        run: aws --version
+       
+      - name: test some pkg
+        run: zip
