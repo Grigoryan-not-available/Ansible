@@ -50,9 +50,9 @@ jobs:
           echo "var2 = ${{env.var2}}"
       
       - name: test step level var
+        run: echo "Local step var = $localStepVar"    
         env: 
-          localStepVar: "Super local"
-        run: echo "Local step var = $localStepVar"        
+          localStepVar: "Super local"    
       
       - name: print Hello msq 
         run: echo "Hello world from test2"
