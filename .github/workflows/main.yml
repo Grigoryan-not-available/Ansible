@@ -17,7 +17,7 @@ jobs:
     
   
   test1:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latestыфв
     steps:
       - name: git clone my repo
         uses: actions/checkout@v1
