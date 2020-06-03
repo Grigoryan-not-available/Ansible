@@ -39,7 +39,21 @@ jobs:
   test2:
     runs-on: ubuntu-latest
     needs: [test1]
+    env:
+      var1: "This is job level var1"
+      var2: "This is job level var2"
+      
     steps:
+      - name: test job level vars
+        run: |
+          echo "var1 = ${{env.var1}}"
+          echo "var2 = ${{env.var2}}"
+      
+      - name: test step level var
+        env: 
+          localStepVar: "Super local"
+        run: echo "Local step var = $localStepVar"        
+      
       - name: print Hello msq 
         run: echo "Hello world from test2"
       
@@ -53,4 +67,4 @@ jobs:
         run: aws --version
        
       - name: test some pkg
-        run: zip
+        run: zip --version
