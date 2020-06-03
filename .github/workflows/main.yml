@@ -1,7 +1,10 @@
 # This is a basic workflow to help you get started with Actions
 
 name: test FitHub Actions
-
+env:
+  app_name: "Flask"
+  pkg_name: "MyTestFlaskDeployVersion${{ github.sha }}"
+  
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
@@ -16,6 +19,13 @@ jobs:
     steps:
       - name: print Hello msq 
         run: echo "Hello world from test1"
+        
+        
+      - name: exec commands
+        run: |
+          echo "kek Hello msq1.1"
+          echo "kek Hello msq1.2"
+          echo "Application name: ${{env.app_name}}"
   
   test2:
     runs-on: ubuntu-latest
@@ -23,3 +33,9 @@ jobs:
     steps:
       - name: print Hello msq 
         run: echo "Hello world from test2"
+      
+      - name: deployment pkg
+        run: |
+          echo "kek Hello msq2.1"
+          echo "kek Hello msq2.2"
+          echo "Application name: ${{env.pkg_name}}"
